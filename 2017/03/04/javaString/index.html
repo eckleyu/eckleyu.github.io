@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="programing," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="欢迎来到我的blog，在这里我会写一些关于编程语言，算法，电影或书的观后感，以及一些其它的感想等，希望这个blog能对你有所帮助，愿我们能一起成长">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://eckleyu.com/categories/index.html">
+<meta name="description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对java中String类在内存中分配和位置的浅析">
+<meta property="og:url" content="http://eckleyu.com/2017/03/04/javaString/index.html">
 <meta property="og:site_name" content="Eckle's blog">
-<meta property="og:description" content="欢迎来到我的blog，在这里我会写一些关于编程语言，算法，电影或书的观后感，以及一些其它的感想等，希望这个blog能对你有所帮助，愿我们能一起成长">
-<meta property="og:updated_time" content="2017-03-03T18:05:18.000Z">
+<meta property="og:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
+<meta property="og:updated_time" content="2017-03-03T22:39:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="欢迎来到我的blog，在这里我会写一些关于编程语言，算法，电影或书的观后感，以及一些其它的感想等，希望这个blog能对你有所帮助，愿我们能一起成长">
+<meta name="twitter:title" content="对java中String类在内存中分配和位置的浅析">
+<meta name="twitter:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
 
 
 
@@ -124,19 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://eckleyu.com/categories/"/>
+  <link rel="canonical" href="http://eckleyu.com/2017/03/04/javaString/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    categories | Eckle's blog
-  
-</title>
+  <title> 对java中String类在内存中分配和位置的浅析 | Eckle's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -161,7 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,25 +250,179 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://eckleyu.com/2017/03/04/javaString/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eckle Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/frog.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eckle's blog">
+    </span>
 
     
-    
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                对java中String类在内存中分配和位置的浅析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T05:47:12+08:00">
+                2017-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法
+              </div>
+          
+
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、预备知识"><a href="#一、预备知识" class="headerlink" title="一、预备知识"></a>一、预备知识</h2><h3 id="1、java的内存区"><a href="#1、java的内存区" class="headerlink" title="1、java的内存区"></a>1、java的内存区</h3><p>众所周知，java程序是运行在java虚拟机(Java Virtual Machine即JVM)上的，而JVM中有一个专门负责给java程序分配内存的区域，叫<strong>运行时数据区（Java Memory Allocation Area）</strong>,也叫虚拟机内存或者java内存.为了不使内存数据杂乱无章，java内存通常被分为5个区域：程序计数器、本地方法栈、方法区、栈、堆。</p>
+<p>我们主要了解一下栈(Stack)、堆（Heap）、方法区中的常量池(Constant Pool)</p>
+<h3 id="2、栈-Stack"><a href="#2、栈-Stack" class="headerlink" title="2、栈(Stack)"></a>2、栈(Stack)</h3><p><strong>栈</strong>:又叫堆栈。JVM为每个新创建的线程都分配一个栈。也就是说,对于一个Java程序来说，它的运行就是通过对栈的操作来完成的。栈以帧为单位保存线程的状态。JVM对栈只进行两种操作：以帧为单位的压栈和出栈操作。该区域具有先进后出的特性。</p>
+<h3 id="3、堆-Heap"><a href="#3、堆-Heap" class="headerlink" title="3、堆(Heap)"></a>3、堆(Heap)</h3><p><strong>堆</strong>:堆是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域。在此区域的唯一目的就是存放对象实例，几乎所有的对象实例都是在这里分配内存，但是这个对象的引用却是在栈（Stack）中分配。</p>
+<hr>
+<p>待更…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/programing/" rel="tag"># programing</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/04/你好啊/" rel="next" title="你好啊">
+                <i class="fa fa-chevron-left"></i> 你好啊
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
           
@@ -306,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/frog.jpg"
@@ -365,6 +522,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、预备知识"><span class="nav-number">1.</span> <span class="nav-text">一、预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、java的内存区"><span class="nav-number">1.1.</span> <span class="nav-text">1、java的内存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、栈-Stack"><span class="nav-number">1.2.</span> <span class="nav-text">2、栈(Stack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、堆-Heap"><span class="nav-number">1.3.</span> <span class="nav-text">3、堆(Heap)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -477,6 +650,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
