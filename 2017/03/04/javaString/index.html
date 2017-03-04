@@ -95,7 +95,8 @@
 <meta property="og:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
 <meta property="og:image" content="http://eckleyu.com/2017/03/04/javaString/stack.png">
 <meta property="og:image" content="http://eckleyu.com/2017/03/04/javaString/String.png">
-<meta property="og:updated_time" content="2017-03-04T12:36:35.000Z">
+<meta property="og:image" content="http://eckleyu.com/2017/03/04/javaString/String2.png">
+<meta property="og:updated_time" content="2017-03-04T22:16:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对java中String类形在内存中分配和位置的浅析">
 <meta name="twitter:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
@@ -371,6 +372,27 @@
 <blockquote>
 <p>Strings are constant; their values cannot be changed after they are created.</p>
 </blockquote>
+<p><img src="/2017/03/04/javaString/String2.png" alt="String"></p>
+<p>这是定义中的一部分，可以看到</p>
+<blockquote>
+<p>The value is used for character storage.</p>
+</blockquote>
+<p>所以实质上是字符数组，且由于定义中的final，String类不可被继承且不变</p>
+<h3 id="2、常量池再探"><a href="#2、常量池再探" class="headerlink" title="2、常量池再探"></a>2、常量池再探</h3><h4 id="什么是常量"><a href="#什么是常量" class="headerlink" title="什么是常量"></a>什么是常量</h4><p>用final修饰的成员变量表示常量，值一旦给定就无法改变！</p>
+<p>final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量。</p>
+<h4 id="Class文件中的常量池"><a href="#Class文件中的常量池" class="headerlink" title="Class文件中的常量池"></a>Class文件中的常量池</h4><p>在Class文件结构中，最头的4个字节用于存储魔数Magic Number，用于确定一个文件是否能被JVM接受，再接着4个字节用于存储版本号，前2个字节存储次版本号，后2个存储主版本号，再接着是用于存放常量的<strong>常量池</strong>，由于常量的数量是不固定的，所以常量池的入口放置一个U2类型的数据(constant_pool_count)存储常量池容量计数值。</p>
+<p>常量池主要用于存放两大类常量：<strong>字面量</strong> (Literal)和 <strong>符号引用量</strong> (Symbolic References)，字面量相当于Java语言层面常量的概念，如文本字符串，声明为final的常量值等，符号引用则属于编译原理方面的概念，包括了如下三种类型的常量：</p>
+<ul>
+<li>类和接口的全限定名</li>
+<li>字段名称和描述符</li>
+<li>方法名称和描述符<h4 id="方法区中的运行时常量池"><a href="#方法区中的运行时常量池" class="headerlink" title="方法区中的运行时常量池"></a>方法区中的运行时常量池</h4>运行时常量池是方法区的一部分。</li>
+</ul>
+<p>CLass文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。</p>
+<p>运行时常量池相对于CLass文件常量池的另外一个重要特征是具备<strong>动态性</strong>，Java语言并不要求常量一定只有编译期才能产生，也就是并非预置入CLass文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中，这种特性被开发人员利用比较多的就是<strong>String</strong>类的intern()方法。</p>
+<h4 id="常量池的好处"><a href="#常量池的好处" class="headerlink" title="常量池的好处"></a>常量池的好处</h4><p>常量池是为了避免频繁的创建和销毁对象而影响系统性能，其实现了对象的共享。</p>
+<p>例如字符串常量池，在编译阶段就把所有的字符串文字放到一个常量池中。</p>
+<p>(1)节省内存空间：常量池中所有相同的字符串常量被合并，只占用一个空间</p>
+<p>(2)节省运行时间：比较字符串时，==比equals()快。对于两个引用变量，只用==判断引用是否相等，也就可以判断实际值是否相等。</p>
 <hr>
 <p>待更…</p>
 
@@ -542,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、预备知识"><span class="nav-number">1.</span> <span class="nav-text">一、预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、java的内存区"><span class="nav-number">1.1.</span> <span class="nav-text">1、java的内存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、栈-Stack"><span class="nav-number">1.2.</span> <span class="nav-text">2、栈(Stack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、堆-Heap"><span class="nav-number">1.3.</span> <span class="nav-text">3、堆(Heap)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、常量池-Constant-Pool"><span class="nav-number">1.4.</span> <span class="nav-text">4、常量池(Constant Pool)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、String类型"><span class="nav-number">2.</span> <span class="nav-text">二、String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、String类型的定义"><span class="nav-number">2.1.</span> <span class="nav-text">1、String类型的定义:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、预备知识"><span class="nav-number">1.</span> <span class="nav-text">一、预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、java的内存区"><span class="nav-number">1.1.</span> <span class="nav-text">1、java的内存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、栈-Stack"><span class="nav-number">1.2.</span> <span class="nav-text">2、栈(Stack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、堆-Heap"><span class="nav-number">1.3.</span> <span class="nav-text">3、堆(Heap)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、常量池-Constant-Pool"><span class="nav-number">1.4.</span> <span class="nav-text">4、常量池(Constant Pool)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、String类型"><span class="nav-number">2.</span> <span class="nav-text">二、String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、String类型的定义"><span class="nav-number">2.1.</span> <span class="nav-text">1、String类型的定义:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、常量池再探"><span class="nav-number">2.2.</span> <span class="nav-text">2、常量池再探</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是常量"><span class="nav-number">2.2.1.</span> <span class="nav-text">什么是常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Class文件中的常量池"><span class="nav-number">2.2.2.</span> <span class="nav-text">Class文件中的常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区中的运行时常量池"><span class="nav-number">2.2.3.</span> <span class="nav-text">方法区中的运行时常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量池的好处"><span class="nav-number">2.2.4.</span> <span class="nav-text">常量池的好处</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
