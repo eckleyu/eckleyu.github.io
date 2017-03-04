@@ -93,12 +93,13 @@
 <meta property="og:url" content="http://eckleyu.com/2017/03/04/javaString/index.html">
 <meta property="og:site_name" content="Eckle's blog">
 <meta property="og:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
-<meta property="og:image" content="http://i1.piimg.com/567571/9fa638f58ef5dfc7.png">
-<meta property="og:updated_time" content="2017-03-04T12:25:46.000Z">
+<meta property="og:image" content="http://eckleyu.com/2017/03/04/javaString/stack.png">
+<meta property="og:image" content="http://eckleyu.com/2017/03/04/javaString/String.png">
+<meta property="og:updated_time" content="2017-03-04T12:35:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对java中String类形在内存中分配和位置的浅析">
 <meta name="twitter:description" content="第一次用markdown写正经点的东西，先试一试效果怎么样,回忆一点经典的东西,顺便练习一下markdown语法和ps做图方法">
-<meta name="twitter:image" content="http://i1.piimg.com/567571/9fa638f58ef5dfc7.png">
+<meta name="twitter:image" content="http://eckleyu.com/2017/03/04/javaString/stack.png">
 
 
 
@@ -363,13 +364,14 @@
 <p>我们主要了解一下栈(Stack)、堆（Heap）、方法区中的常量池(Constant Pool)</p>
 <h3 id="2、栈-Stack"><a href="#2、栈-Stack" class="headerlink" title="2、栈(Stack)"></a>2、栈(Stack)</h3><p><strong>栈</strong>:又叫堆栈。JVM为每个新创建的线程都分配一个栈。也就是说,对于一个Java程序来说，它的运行就是通过对栈的操作来完成的。栈以帧为单位保存线程的状态。JVM对栈只进行两种操作：以帧为单位的压栈和出栈操作。该区域具有先进后出的特性。</p>
 <h3 id="3、堆-Heap"><a href="#3、堆-Heap" class="headerlink" title="3、堆(Heap)"></a>3、堆(Heap)</h3><p><strong>堆</strong>:堆是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域。在此区域的唯一目的就是存放对象实例，几乎所有的对象实例都是在这里分配内存，但是这个对象的引用却是在栈（Stack）中分配。</p>
-<p><img src="http://i1.piimg.com/567571/9fa638f58ef5dfc7.png" alt=""></p>
+<p><img src="/2017/03/04/javaString/stack.png" alt="stack和heap的关系"></p>
 <h3 id="4、常量池-Constant-Pool"><a href="#4、常量池-Constant-Pool" class="headerlink" title="4、常量池(Constant Pool)"></a>4、常量池(Constant Pool)</h3><p><strong>常量池</strong>:方法区（被所有线程共享）中会存放一些从class文件包含的二进制数据中解析的类型信息，包括类信息、常量、静态变量等。常量池是方法区中一块特殊的内存区域。</p>
-<h2 id="二、String类型"><a href="#二、String类型" class="headerlink" title="二、String类型"></a>二、String类型</h2><h3 id="1、String类型的定义"><a href="#1、String类型的定义" class="headerlink" title="1、String类型的定义:"></a>1、String类型的定义:</h3><pre><code>![String](javaString/String.png)
-上图是java中String类型源码中的注释，注意看被选中的这段话
-
-Strings are constant; their values cannot be changed after they  are created. String buffers support mutable strings.
-</code></pre><hr>
+<h2 id="二、String类型"><a href="#二、String类型" class="headerlink" title="二、String类型"></a>二、String类型</h2><h3 id="1、String类型的定义"><a href="#1、String类型的定义" class="headerlink" title="1、String类型的定义:"></a>1、String类型的定义:</h3><p><img src="/2017/03/04/javaString/String.png" alt="String"></p>
+<p>上图是String类型源码中的注释，注意看被选中的这小段话</p>
+<blockquote>
+<p>Strings are constant; their values cannot be changed after they are created.</p>
+</blockquote>
+<hr>
 <p>待更…</p>
 
       
