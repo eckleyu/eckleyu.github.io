@@ -87,18 +87,16 @@
 
 
 
-<meta name="description" content="union-find() 动态连通性问题">
+<meta name="description" content="归并排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="百日百行计划5:Union-find">
-<meta property="og:url" content="http://eckleyu.com/2017/03/19/bairi5/index.html">
+<meta property="og:title" content="百日百行计划8:归并排序">
+<meta property="og:url" content="http://eckleyu.com/2017/03/30/bairi8/index.html">
 <meta property="og:site_name" content="Eckle's blog">
-<meta property="og:description" content="union-find() 动态连通性问题">
-<meta property="og:image" content="http://eckleyu.com/2017/03/19/bairi5/bairi5.png">
-<meta property="og:updated_time" content="2017-03-20T03:15:46.000Z">
+<meta property="og:description" content="归并排序">
+<meta property="og:updated_time" content="2017-03-30T14:08:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="百日百行计划5:Union-find">
-<meta name="twitter:description" content="union-find() 动态连通性问题">
-<meta name="twitter:image" content="http://eckleyu.com/2017/03/19/bairi5/bairi5.png">
+<meta name="twitter:title" content="百日百行计划8:归并排序">
+<meta name="twitter:description" content="归并排序">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://eckleyu.com/2017/03/19/bairi5/"/>
+  <link rel="canonical" href="http://eckleyu.com/2017/03/30/bairi8/"/>
 
 
 
 
 
-  <title> 百日百行计划5:Union-find | Eckle's blog </title>
+  <title> 百日百行计划8:归并排序 | Eckle's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://eckleyu.com/2017/03/19/bairi5/">
+    <link itemprop="mainEntityOfPage" href="http://eckleyu.com/2017/03/30/bairi8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eckle Yu">
@@ -282,7 +280,7 @@
             
             
               
-                百日百行计划5:Union-find
+                百日百行计划8:归并排序
               
             
           </h1>
@@ -297,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T20:59:36+08:00">
-                2017-03-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T21:39:33+08:00">
+                2017-03-30
               </time>
             
 
@@ -307,6 +305,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -322,7 +342,7 @@
 
           
               <div class="post-description">
-                  union-find() 动态连通性问题
+                  归并排序
               </div>
           
 
@@ -337,20 +357,7 @@
       
 
       
-        <h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>假设我们现在存在这样一个问题，即输入一列整数对，其中每个整数都白哦是一个某种类型的对象，一对整数p,q可以被理解为”p和q是相连的”<br>我们假设相连是一种等价关系，意味着它具有</p>
-<ul>
-<li>自反性</li>
-<li>对称性</li>
-<li>传递性<br>等价关系将目标分为多个 <strong><em>等价类</em></strong> ,当且仅当连个对象相连时，他们才属于同一个等价类。我们的目标是编写一个程序来过滤掉序列中<br>所有无意义的整数对(即两个整数来自同一个等价类中)，如果已知整数对都不能说明p和q时相连的，我们将它们打印到输出。</li>
-</ul>
-<p>我们需要设计一种数据将结构来保存程序已知的所有整数对的足够多的信息，并用它们来判断一对新对象否相连。</p>
-<p>我们将这个问题通俗的叫做 <strong><em>动态连通性问题</em></strong> </p>
-<h3 id="现实意义"><a href="#现实意义" class="headerlink" title="现实意义"></a>现实意义</h3><h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><p>输入的整数可能表示在大型计算机网络中的计算机，而整数对则表示网络中的连接。这个程序能判断是否需要在p,q中架设一条新的连接才能进行通讯。<br>同样可以表示社交网络中的人，而整数对表示的是朋友关系</p>
-<h4 id="变量名的等价性"><a href="#变量名的等价性" class="headerlink" title="变量名的等价性"></a>变量名的等价性</h4><p>判断两个变量名是否等价(指向同一个对象的多个引用)</p>
-<h4 id="数学集合"><a href="#数学集合" class="headerlink" title="数学集合"></a>数学集合</h4><p>判断一个整数对是否属于一个集合</p>
-<h4 id="除了左下方的五个触点，你能判断其它的触点是否全都相连吗？"><a href="#除了左下方的五个触点，你能判断其它的触点是否全都相连吗？" class="headerlink" title="除了左下方的五个触点，你能判断其它的触点是否全都相连吗？"></a>除了左下方的五个触点，你能判断其它的触点是否全都相连吗？</h4><p><img src="/2017/03/19/bairi5/bairi5.png" alt="触点图"></p>
-<h3 id="设计实现及用例"><a href="#设计实现及用例" class="headerlink" title="设计实现及用例"></a>设计实现及用例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">public class UF</div><div class="line">&#123;</div><div class="line">    privated int[] id;//分量id(以触电作为索引)</div><div class="line">    private int count;//分量数量</div><div class="line">    public UF(int N)//以整数标示(0到N-1初始化N个触点)</div><div class="line">    &#123;</div><div class="line">        //初始化分量id数组</div><div class="line">        count=N;</div><div class="line">        id=new int[N];</div><div class="line">        for(int i=0;i&lt;N;i++)</div><div class="line">            id[i]=i;</div><div class="line">    &#125;</div><div class="line">    pubilc int count()</div><div class="line">    &#123;return count;&#125;</div><div class="line"></div><div class="line">    public boolean connected(int p,ing q)//判断p,q是否相连</div><div class="line">    &#123;return find(p)==find(q);&#125;</div><div class="line"></div><div class="line">    public int find(int p)//p所在分量的标识符</div><div class="line">    &#123;return id[p]&#125;</div><div class="line"></div><div class="line">    public void union(int p,int q)//如果p,q未相连，连接它们</div><div class="line">    &#123;</div><div class="line">        int pID=find(p);</div><div class="line">        int qID=find(q);</div><div class="line"></div><div class="line">        if(pID==qID) return ;</div><div class="line"></div><div class="line">        for(int i=0;i&lt;id.length;i++)</div><div class="line">            if(id[i]==pID) id[i]=qID;</div><div class="line">        count--;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main()</div><div class="line">    &#123;</div><div class="line">        int N=StdIn.readInt();</div><div class="line">        UF uf=new UF(N);</div><div class="line">        while(!StdIn.isEmpty())</div><div class="line">        &#123;</div><div class="line">            int p=StdIn.readInt();</div><div class="line">            int q=StdIn.readInt();</div><div class="line">            if(uf.connect(p,q)) continue;</div><div class="line">            uf.union(p,q);</div><div class="line">            StdOut.println(p+ &quot; &quot; q);</div><div class="line">        &#125;</div><div class="line">        StdOut.println(uf.count()+&quot;components&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种实现很容易理解，但是这种实现中每一对输入union()都需要扫描整个id[]数组。显然，一般情况下不能用它来处理大型问题，我们会在以后改进它.</p>
+        <h3 id="归并排序运用了一种重要的思想，即“分治”"><a href="#归并排序运用了一种重要的思想，即“分治”" class="headerlink" title="归并排序运用了一种重要的思想，即“分治”"></a>归并排序运用了一种重要的思想，即“分治”</h3><h4 id="时间复杂度NlogN"><a href="#时间复杂度NlogN" class="headerlink" title="时间复杂度NlogN"></a>时间复杂度NlogN</h4><h4 id="空间复杂度N"><a href="#空间复杂度N" class="headerlink" title="空间复杂度N"></a>空间复杂度N</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Merge</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v,Comparable w)</span></span></div><div class="line">    &#123;<span class="keyword">return</span> v.compareTo(w)&lt;<span class="number">0</span>;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span></div><div class="line">    &#123;</div><div class="line">        Comparable t=a[i];a[i]=a[j];a[j]=t;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">  	<span class="keyword">private</span> <span class="keyword">static</span> Comparable[] aux;<span class="comment">//辅助数组 </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> mid,<span class="keyword">int</span> hi)</span><span class="comment">//将a[lo....mid]和a[mid+1...hi]归并</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> i=lo,j=mid+<span class="number">1</span>;</div><div class="line">      </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=lo;k&lt;=hi;k++)</div><div class="line">            aux[k]=a[k];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=lo;k&lt;=hi;k++)</div><div class="line">          	<span class="comment">//先是两种一边用完的情况</span></div><div class="line">            <span class="keyword">if</span>(i&gt;mid) a[k]=aux[j++];</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j&gt;hi) a[k]=aux[i++];</div><div class="line">      		<span class="comment">//正常的按照大小归并到辅助数组中去</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(less(aux[j],aux[i])) a[k]=aux[j++];</div><div class="line">            <span class="keyword">else</span> a[k]=aux[i++];</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span><span class="comment">//重载的sort接口</span></span></div><div class="line">    &#123;</div><div class="line">        aux=<span class="keyword">new</span> Comparable[a.length];</div><div class="line">        sort(a,<span class="number">0</span>,a.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span><span class="comment">//真正使用的sort</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(hi&lt;=lo) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">int</span> mid=lo+(hi-lo)/<span class="number">2</span>;</div><div class="line">      	<span class="comment">//不停的递归 左边直到sort(a,0,1)后开始merge(a,0,0,1)</span></div><div class="line">      	<span class="comment">//右边再递归 排序</span></div><div class="line">        sort(a,lo,mid);</div><div class="line">        sort(a,mid+<span class="number">1</span>,hi);</div><div class="line">        merge(a,lo,mid,hi);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -387,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/15/bairi4/" rel="next" title="百日百行计划:4  (Evaluate)">
-                <i class="fa fa-chevron-left"></i> 百日百行计划:4  (Evaluate)
+              <a href="/2017/03/28/fatiaocheng/" rel="next" title="发条橙">
+                <i class="fa fa-chevron-left"></i> 发条橙
               </a>
             
           </div>
@@ -396,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/20/bairi6/" rel="prev" title="百日百行计划6:两个排序">
-                百日百行计划6:两个排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,7 +527,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题引入"><span class="nav-number">1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现实意义"><span class="nav-number">2.</span> <span class="nav-text">现实意义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-number">2.1.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量名的等价性"><span class="nav-number">2.2.</span> <span class="nav-text">变量名的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数学集合"><span class="nav-number">2.3.</span> <span class="nav-text">数学集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除了左下方的五个触点，你能判断其它的触点是否全都相连吗？"><span class="nav-number">2.4.</span> <span class="nav-text">除了左下方的五个触点，你能判断其它的触点是否全都相连吗？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计实现及用例"><span class="nav-number">3.</span> <span class="nav-text">设计实现及用例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序运用了一种重要的思想，即“分治”"><span class="nav-number">1.</span> <span class="nav-text">归并排序运用了一种重要的思想，即“分治”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度NlogN"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度NlogN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空间复杂度N"><span class="nav-number">1.2.</span> <span class="nav-text">空间复杂度N</span></a></li></ol></li></ol></div>
             
 
           </div>
